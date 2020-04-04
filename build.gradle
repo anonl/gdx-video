@@ -152,7 +152,7 @@ bintray {
     key = System.getenv('BINTRAY_KEY')
     publications = ['common', 'android', 'desktop', 'desktop_natives']
     pkg {
-        repo = 'gdx-video'
+        repo = 'nvlist'
         name = 'gdx-video'
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/anonl/gdx-video.git'
