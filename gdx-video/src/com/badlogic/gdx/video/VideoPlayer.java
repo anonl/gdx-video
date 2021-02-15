@@ -25,7 +25,7 @@ import com.badlogic.gdx.utils.Disposable;
  * The VideoPlayer will play a video on any given mesh, using textures. It can be reused, but can only play
  * one video at the time.
  *
- * @author Rob Bogie <rob.bogie@codepoke.net>
+ * @author Rob Bogie {@code <rob.bogie@codepoke.net>}
  */
 public interface VideoPlayer extends Disposable {
     public interface VideoSizeListener {
@@ -105,7 +105,7 @@ public interface VideoPlayer extends Disposable {
 
     /**
      * This will return the width of the currently playing video.
-     * <p/>
+     * <p>
      * This function cannot be called until the {@link VideoSizeListener} has been called for the currently
      * playing video. If this callback has not been set, a good alternative is to wait until the
      * {@link #isBuffered} function returns true, which guarantees the availability of the videoSize.
@@ -116,7 +116,7 @@ public interface VideoPlayer extends Disposable {
 
     /**
      * This will return the height of the currently playing video.
-     * <p/>
+     * <p>
      * This function cannot be called until the {@link VideoSizeListener} has been called for the currently
      * playing video. If this callback has not been set, a good alternative is to wait until the
      * {@link #isBuffered} function returns true, which guarantees the availability of the videoSize.

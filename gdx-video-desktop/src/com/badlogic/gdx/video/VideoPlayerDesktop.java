@@ -40,7 +40,7 @@ import com.badlogic.gdx.video.VideoDecoder.VideoDecoderBuffers;
 /**
  * Desktop implementation of the VideoPlayer
  *
- * @author Rob Bogie <rob.bogie@codepoke.net>
+ * @author Rob Bogie {@code <rob.bogie@codepoke.net>}
  */
 public class VideoPlayerDesktop implements VideoPlayer {
 

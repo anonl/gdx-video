@@ -24,7 +24,7 @@ import com.badlogic.gdx.utils.Disposable;
  * This class is a java wrapper used on the background, which communicates through jni to the actual video
  * decoder.
  *
- * @author Rob Bogie <rob.bogie@codepoke.net>
+ * @author Rob Bogie {@code <rob.bogie@codepoke.net>}
  */
 public class VideoDecoder implements Disposable {
     /**

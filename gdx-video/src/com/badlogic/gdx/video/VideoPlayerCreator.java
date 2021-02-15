@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * This class is used to provide a way of creating a VideoPlayer, without knowing the platform the program is
  * running on. This has to be extended for each supported platform.
  *
- * @author Rob Bogie <rob.bogie@codepoke.net>
+ * @author Rob Bogie {@code <rob.bogie@codepoke.net>}
  */
 public final class VideoPlayerCreator {
 

@@ -1,8 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
-        mavenLocal()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:0.14+"
@@ -10,40 +8,21 @@ buildscript {
     }
 }
 
-plugins {
-    id 'com.jfrog.bintray' version '1.7.3'
-}
-
 allprojects {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
 
-    group = 'nl.weeaboo.gdx.video'
+    group = 'nl.weeaboo.gdx-video'
     version = '1.0.0-anonl'
 
     repositories {
         mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         flatDir { dirs "$rootProject.projectDir/libs" }
     }
 
 	ext {
-	    projectGroup = 'gdx-video'
-	
 	    gdxVersion = '1.9.6'
-	    slf4jVersion = '1.7.21'
-	
-	    pomLicenseConfig = {
-	       licenses {
-	            license {
-	                name 'The Apache Software License, Version 2.0'
-	                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-	                distribution 'repo'
-	            }
-	        }
-	    }
-	    pomLicenseConfig.resolveStrategy = Closure.DELEGATE_ONLY // Otherwise 'license' elem is missing
+	    slf4jVersion = '1.7.21'	
 	}
 }
 
@@ -57,10 +36,7 @@ subprojects {
         compileTestJava.options.encoding = 'UTF-8'
     }
     
-    task sourceJar(type: Jar) {
-        from sourceSets.main.allJava
-        classifier "sources"
-    }
+    project.apply from: rootProject.file('publish.gradle')
 }
 
 project(":gdx-video") {
@@ -96,68 +72,4 @@ project(":gdx-video-android") {
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion"
     }
 
-}
-
-apply plugin: 'maven-publish'
-
-publishing {
-    publications {
-        common(MavenPublication) {
-            artifactId = 'gdx-video'
-
-            def proj = project(":gdx-video")
-            from proj.components.java            
-            artifact(proj.sourceJar)            
-
-            pom.withXml {
-                asNode().children().last() + proj.ext.pomLicenseConfig
-            }  
-        }
-        android(MavenPublication) {
-            artifactId = 'gdx-video-android'
-
-            def proj = project(":gdx-video-android")
-            from proj.components.java            
-            artifact(proj.sourceJar)            
-
-            pom.withXml {
-                asNode().children().last() + proj.ext.pomLicenseConfig
-            }  
-        }
-        desktop(MavenPublication) {
-            artifactId = 'gdx-video-desktop'
-
-            def proj = project(":gdx-video-desktop")
-            from proj.components.java            
-            artifact(proj.sourceJar)            
-
-            pom.withXml {
-                asNode().children().last() + proj.ext.pomLicenseConfig
-            }  
-        }
-        desktop_natives(MavenPublication) {
-            artifactId = 'gdx-video-desktop-natives'
-
-            artifact "libs/gdx-video-desktop-natives-${version}.jar"
-
-            pom.withXml {
-                asNode().children().last() + pomLicenseConfig
-            }  
-        }
-    }
-}
-
-bintray {   
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    publications = ['common', 'android', 'desktop', 'desktop_natives']
-    pkg {
-        repo = 'nvlist'
-        name = 'gdx-video'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/anonl/gdx-video.git'
-        version {
-            name = project.version
-        }
-    }
 }
