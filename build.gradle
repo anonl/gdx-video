@@ -21,6 +21,8 @@ allprojects {
     }
 
 	ext {
+	    projectGroup = 'gdx-video'
+	
 	    gdxVersion = '1.9.6'
 	    slf4jVersion = '1.7.21'	
 	}
